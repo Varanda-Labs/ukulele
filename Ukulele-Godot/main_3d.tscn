@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://buoqypsf11o7g"]
+
+[ext_resource type="PackedScene" uid="uid://4njgk7w5071h" path="res://blends/Ukulele.blend" id="1_j48fw"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ukulele" parent="." instance=ExtResource("1_j48fw")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85561, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.782021, 0.623252, 0, -0.623252, 0.782021, 0, 6.83998, 7.47082)
+
+[node name="ImporterMeshInstance3D" type="ImporterMeshInstance3D" parent="."]
+
+[editable path="Ukulele"]
