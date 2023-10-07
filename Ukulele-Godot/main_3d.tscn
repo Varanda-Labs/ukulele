@@ -1,6 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://buoqypsf11o7g"]
+[gd_scene load_steps=17 format=3 uid="uid://buoqypsf11o7g"]
 
 [ext_resource type="PackedScene" uid="uid://drdhsjtcxi7pm" path="res://meshes/Ukulele.glb" id="1_0ey46"]
+[ext_resource type="Texture2D" uid="uid://cxkuv1c5y3g7b" path="res://textures/ukulelewood.jpg" id="2_m4h23"]
+[ext_resource type="Texture2D" uid="uid://cobquih2sqjc" path="res://textures/face.png" id="3_ig0sc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3njvk"]
+albedo_color = Color(0.996078, 0.878431, 0.615686, 1)
+roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4cgd"]
+albedo_color = Color(0.886275, 0.894118, 0.894118, 1)
+metallic = 0.43
+metallic_specular = 0.66
+roughness = 0.21
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1pqs"]
+albedo_color = Color(0.87451, 0.682353, 0.552941, 1)
+metallic = 0.38
+metallic_specular = 0.54
+roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_er3vf"]
+albedo_color = Color(1, 0.764706, 0.290196, 1)
+roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3e11m"]
+albedo_color = Color(0.929412, 0.764706, 0.592157, 1)
+metallic = 0.83
+metallic_specular = 0.79
+roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erx33"]
+albedo_color = Color(0.901961, 0.901961, 0.905882, 1)
+albedo_texture = ExtResource("2_m4h23")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4b1jm"]
+albedo_color = Color(0.686275, 0.223529, 0, 1)
+albedo_texture = ExtResource("2_m4h23")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvr0o"]
+albedo_color = Color(1, 0.886275, 0.733333, 1)
+roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tef81"]
+albedo_color = Color(0.901961, 0.694118, 0.403922, 1)
+metallic = 0.29
+metallic_specular = 0.92
+roughness = 0.52
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yu0or"]
+albedo_color = Color(1, 0.960784, 0.909804, 1)
+roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trbqa"]
+albedo_texture = ExtResource("2_m4h23")
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrx7l"]
+albedo_texture = ExtResource("3_ig0sc")
+roughness = 0.44
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l277a"]
+albedo_color = Color(1, 0.886275, 0.733333, 1)
+roughness = 0.19
 
 [node name="Node3D" type="Node3D"]
 
@@ -13,5 +75,24 @@ transform = Transform3D(1, 0, 0, 0, 0.782021, 0.623252, 0, -0.623252, 0.782021, 
 [node name="ImporterMeshInstance3D" type="ImporterMeshInstance3D" parent="."]
 
 [node name="Ukulele" parent="." instance=ExtResource("1_0ey46")]
+
+[node name="Strings" parent="Ukulele" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3njvk")
+surface_material_override/1 = SubResource("StandardMaterial3D_o4cgd")
+surface_material_override/2 = SubResource("StandardMaterial3D_l1pqs")
+surface_material_override/3 = SubResource("StandardMaterial3D_er3vf")
+surface_material_override/4 = SubResource("StandardMaterial3D_3e11m")
+
+[node name="Neck" parent="Ukulele" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_erx33")
+surface_material_override/1 = SubResource("StandardMaterial3D_4b1jm")
+surface_material_override/2 = SubResource("StandardMaterial3D_mvr0o")
+surface_material_override/3 = SubResource("StandardMaterial3D_tef81")
+surface_material_override/4 = SubResource("StandardMaterial3D_yu0or")
+
+[node name="Body" parent="Ukulele" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_trbqa")
+surface_material_override/1 = SubResource("StandardMaterial3D_yrx7l")
+surface_material_override/2 = SubResource("StandardMaterial3D_l277a")
 
 [editable path="Ukulele"]
