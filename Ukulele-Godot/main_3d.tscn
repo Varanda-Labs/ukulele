@@ -1,10 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://buoqypsf11o7g"]
+[gd_scene load_steps=7 format=3 uid="uid://buoqypsf11o7g"]
 
-[ext_resource type="PackedScene" uid="uid://4njgk7w5071h" path="res://blends/Ukulele.blend" id="1_j48fw"]
+[ext_resource type="PackedScene" uid="uid://drdhsjtcxi7pm" path="res://meshes/Ukulele.glb" id="1_0ey46"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xeusp"]
+albedo_color = Color(1, 0.458824, 0.505882, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qait"]
+albedo_color = Color(1, 1, 0.631373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3g4y1"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhujr"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r58n"]
+albedo_color = Color(0.4, 1, 0, 1)
 
 [node name="Node3D" type="Node3D"]
-
-[node name="Ukulele" parent="." instance=ExtResource("1_j48fw")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85561, 0)
@@ -13,5 +26,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85561, 0)
 transform = Transform3D(1, 0, 0, 0, 0.782021, 0.623252, 0, -0.623252, 0.782021, 0, 6.83998, 7.47082)
 
 [node name="ImporterMeshInstance3D" type="ImporterMeshInstance3D" parent="."]
+
+[node name="Ukulele" parent="." instance=ExtResource("1_0ey46")]
+
+[node name="body" parent="Ukulele" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xeusp")
+surface_material_override/1 = SubResource("StandardMaterial3D_4qait")
+surface_material_override/2 = SubResource("StandardMaterial3D_3g4y1")
+surface_material_override/3 = SubResource("StandardMaterial3D_hhujr")
+surface_material_override/4 = SubResource("StandardMaterial3D_1r58n")
 
 [editable path="Ukulele"]
