@@ -1,20 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://buoqypsf11o7g"]
+[gd_scene load_steps=2 format=3 uid="uid://buoqypsf11o7g"]
 
 [ext_resource type="PackedScene" uid="uid://drdhsjtcxi7pm" path="res://meshes/Ukulele.glb" id="1_0ey46"]
-[ext_resource type="Texture2D" uid="uid://cxkuv1c5y3g7b" path="res://textures/ukulelewood.jpg" id="2_m4h23"]
-[ext_resource type="Texture2D" uid="uid://cobquih2sqjc" path="res://textures/face.png" id="3_ig0sc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xeusp"]
-albedo_color = Color(0.976471, 0.976471, 0.980392, 1)
-albedo_texture = ExtResource("2_m4h23")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qait"]
-albedo_color = Color(0.972549, 0.972549, 0.972549, 1)
-albedo_texture = ExtResource("3_ig0sc")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3g4y1"]
-albedo_color = Color(0.968627, 0.917647, 0.796078, 1)
-roughness = 0.29
 
 [node name="Node3D" type="Node3D"]
 
@@ -27,10 +13,5 @@ transform = Transform3D(1, 0, 0, 0, 0.782021, 0.623252, 0, -0.623252, 0.782021, 
 [node name="ImporterMeshInstance3D" type="ImporterMeshInstance3D" parent="."]
 
 [node name="Ukulele" parent="." instance=ExtResource("1_0ey46")]
-
-[node name="body" parent="Ukulele" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_xeusp")
-surface_material_override/1 = SubResource("StandardMaterial3D_4qait")
-surface_material_override/2 = SubResource("StandardMaterial3D_3g4y1")
 
 [editable path="Ukulele"]
