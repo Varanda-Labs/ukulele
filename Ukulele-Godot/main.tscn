@@ -1,9 +1,44 @@
-[gd_scene load_steps=23 format=3 uid="uid://dilrp1omy2wh"]
+[gd_scene load_steps=30 format=3 uid="uid://dilrp1omy2wh"]
 
-[ext_resource type="PackedScene" uid="uid://bvaci1tvts5vj" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
-[ext_resource type="Texture2D" uid="uid://bpmg7w7nnl31s" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
-[ext_resource type="Texture2D" uid="uid://c17x2dk0r8yuv" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
-[ext_resource type="Texture2D" uid="uid://dvdhuqayq30ew" path="res://textures/face.png" id="4_mgerp"]
+[ext_resource type="PackedScene" uid="uid://ctv6mboqqwy7x" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
+[ext_resource type="Texture2D" uid="uid://mcqew4fl51dn" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
+[ext_resource type="Texture2D" uid="uid://dmchd6glkqdec" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
+[ext_resource type="Texture2D" uid="uid://taylir2fjpwr" path="res://textures/face.png" id="4_mgerp"]
+[ext_resource type="Script" path="res://AnimateStrings.gd" id="5_8k0le"]
+
+[sub_resource type="GDScript" id="GDScript_vuwli"]
+script/source = "extends Node3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stjbi"]
+albedo_color = Color(0, 0.0392157, 0.0392157, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e53to"]
+material = SubResource("StandardMaterial3D_stjbi")
+size = Vector2(200, 200)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_513rf"]
+
+[sub_resource type="Sky" id="Sky_18rie"]
+sky_material = SubResource("PhysicalSkyMaterial_513rf")
+
+[sub_resource type="Environment" id="Environment_xvvae"]
+background_mode = 2
+sky = SubResource("Sky_18rie")
+sky_custom_fov = 7.5
+ambient_light_color = Color(0.870588, 0.886275, 0.85098, 1)
+ambient_light_energy = 0.76
+reflected_light_source = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3njvk"]
 albedo_color = Color(0.996078, 0.878431, 0.615686, 1)
@@ -203,16 +238,30 @@ _data = {
 }
 
 [node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_vuwli")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85561, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_e53to")
+skeleton = NodePath("../DirectionalLight3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.972986, -0.230865, 1.41296e-08, 0.152861, 0.644236, 0.749395, -0.173009, -0.729151, 0.662123, 0, 4.58602, 0)
+light_energy = 5.364
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.515
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xvvae")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.782021, 0.623252, 0, -0.623252, 0.782021, 0, 6.83998, 7.47082)
+transform = Transform3D(0.345171, -0.550472, 0.760156, -0.0706165, 0.792407, 0.605892, -0.935879, -0.262816, 0.234643, 10.8106, 10.8888, -0.306669)
+fov = 44.9
+near = 0.038
 
 [node name="ImporterMeshInstance3D" type="ImporterMeshInstance3D" parent="."]
 
 [node name="Ukulele" parent="." instance=ExtResource("1_tgrxy")]
+transform = Transform3D(0.991114, 0.133017, 0, -0.133017, 0.991114, 0, 0, 0, 1, 0, 3.42816, 0)
 
 [node name="Strings" parent="Ukulele" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_3njvk")
@@ -238,5 +287,6 @@ root_node = NodePath("../Camera3D")
 libraries = {
 "": SubResource("AnimationLibrary_jyt0h")
 }
+script = ExtResource("5_8k0le")
 
 [editable path="Ukulele"]
