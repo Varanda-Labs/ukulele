@@ -1,15 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://buoqypsf11o7g"]
+[gd_scene load_steps=18 format=3 uid="uid://buoqypsf11o7g"]
 
-[ext_resource type="PackedScene" uid="uid://drdhsjtcxi7pm" path="res://meshes/Ukulele.glb" id="1_0ey46"]
+[ext_resource type="PackedScene" uid="uid://bvaci1tvts5vj" path="res://meshes/Ukulele.glb" id="1_0ey46"]
 [ext_resource type="Texture2D" uid="uid://cxkuv1c5y3g7b" path="res://textures/ukulelewood.jpg" id="2_m4h23"]
-[ext_resource type="Texture2D" uid="uid://cobquih2sqjc" path="res://textures/face.png" id="3_ig0sc"]
+[ext_resource type="Texture2D" uid="uid://dvdhuqayq30ew" path="res://textures/face.png" id="3_ig0sc"]
+[ext_resource type="Texture2D" uid="uid://c17x2dk0r8yuv" path="res://textures/ukulelewood_normal.png" id="3_mvgn0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3njvk"]
 albedo_color = Color(0.996078, 0.878431, 0.615686, 1)
 roughness = 0.19
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4cgd"]
-albedo_color = Color(0.886275, 0.894118, 0.894118, 1)
+resource_name = "metal"
+albedo_color = Color(0.956863, 0.886275, 0.729412, 1)
 metallic = 0.43
 metallic_specular = 0.66
 roughness = 0.21
@@ -33,10 +35,16 @@ roughness = 0.19
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erx33"]
 albedo_color = Color(0.901961, 0.901961, 0.905882, 1)
 albedo_texture = ExtResource("2_m4h23")
+normal_enabled = true
+normal_scale = 0.1
+normal_texture = ExtResource("3_mvgn0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4b1jm"]
 albedo_color = Color(0.686275, 0.223529, 0, 1)
 albedo_texture = ExtResource("2_m4h23")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("3_mvgn0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvr0o"]
 albedo_color = Color(1, 0.886275, 0.733333, 1)
@@ -55,10 +63,16 @@ roughness = 0.19
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trbqa"]
 albedo_texture = ExtResource("2_m4h23")
 roughness = 0.0
+normal_enabled = true
+normal_scale = 0.1
+normal_texture = ExtResource("3_mvgn0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrx7l"]
 albedo_texture = ExtResource("3_ig0sc")
 roughness = 0.44
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("3_mvgn0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l277a"]
 albedo_color = Color(1, 0.886275, 0.733333, 1)
