@@ -48,13 +48,13 @@ func _on_play(v):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if self.name == "AnimationPlayer_1":
-		game_root_node.play_string_1_requested.connect(_on_play)
+		ukulele_node.play_string_1_requested.connect(_on_play)
 	elif self.name == "AnimationPlayer_2":
-		game_root_node.play_string_2_requested.connect(_on_play)
+		ukulele_node.play_string_2_requested.connect(_on_play)
 	elif self.name == "AnimationPlayer_3":
-		game_root_node.play_string_3_requested.connect(_on_play)
+		ukulele_node.play_string_3_requested.connect(_on_play)
 	elif self.name == "AnimationPlayer_4":
-		game_root_node.play_string_4_requested.connect(_on_play)
+		ukulele_node.play_string_4_requested.connect(_on_play)
 
 		return
 	return
