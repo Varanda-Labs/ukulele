@@ -1,22 +1,49 @@
 [gd_scene load_steps=30 format=3 uid="uid://dilrp1omy2wh"]
 
-[ext_resource type="PackedScene" uid="uid://ctv6mboqqwy7x" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
-[ext_resource type="Texture2D" uid="uid://mcqew4fl51dn" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
-[ext_resource type="Texture2D" uid="uid://dmchd6glkqdec" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
-[ext_resource type="Texture2D" uid="uid://taylir2fjpwr" path="res://textures/face.png" id="4_mgerp"]
+[ext_resource type="PackedScene" uid="uid://bvaci1tvts5vj" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
+[ext_resource type="Texture2D" uid="uid://bpmg7w7nnl31s" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
+[ext_resource type="Texture2D" uid="uid://c17x2dk0r8yuv" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
+[ext_resource type="Texture2D" uid="uid://dvdhuqayq30ew" path="res://textures/face.png" id="4_mgerp"]
 [ext_resource type="Script" path="res://AnimateStrings.gd" id="5_8k0le"]
 
 [sub_resource type="GDScript" id="GDScript_vuwli"]
 script/source = "extends Node3D
 
+signal play_string_1_requested
+signal play_string_2_requested
+signal play_string_3_requested
+signal play_string_4_requested
+
+var done = false
+
+func play_string(n):
+	var s
+	if n == 1:
+		s = play_string_1_requested
+	elif n == 2:
+		s =  play_string_2_requested
+	elif n == 3:
+		s =  play_string_3_requested
+	elif n == 4:
+		s =  play_string_4_requested
+	else:
+		print(\"bad string\")
+		return
+	s.emit(n)
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if done == false:
+		done = true
+		#play_string_1_requested.emit(\"abc\")
+		play_string(1)
+		play_string(2)
+		play_string(3)
+		play_string(4)
 
 "
 
@@ -282,7 +309,28 @@ surface_material_override/0 = SubResource("StandardMaterial3D_trbqa")
 surface_material_override/1 = SubResource("StandardMaterial3D_yrx7l")
 surface_material_override/2 = SubResource("StandardMaterial3D_l277a")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer_1" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Camera3D")
+libraries = {
+"": SubResource("AnimationLibrary_jyt0h")
+}
+script = ExtResource("5_8k0le")
+
+[node name="AnimationPlayer_2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Camera3D")
+libraries = {
+"": SubResource("AnimationLibrary_jyt0h")
+}
+script = ExtResource("5_8k0le")
+
+[node name="AnimationPlayer_3" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Camera3D")
+libraries = {
+"": SubResource("AnimationLibrary_jyt0h")
+}
+script = ExtResource("5_8k0le")
+
+[node name="AnimationPlayer_4" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera3D")
 libraries = {
 "": SubResource("AnimationLibrary_jyt0h")
