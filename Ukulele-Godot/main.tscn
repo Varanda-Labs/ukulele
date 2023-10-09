@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dilrp1omy2wh"]
+[gd_scene load_steps=31 format=3 uid="uid://dilrp1omy2wh"]
 
 [ext_resource type="PackedScene" uid="uid://bvaci1tvts5vj" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
 [ext_resource type="Script" path="res://meshes/Ukulele.gd" id="2_j3joj"]
@@ -99,6 +99,10 @@ normal_texture = ExtResource("3_cl4yk")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l277a"]
 albedo_color = Color(1, 0.886275, 0.733333, 1)
 roughness = 0.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sao5"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
 
 [sub_resource type="Animation" id="Animation_cw1tk"]
 resource_name = "String-1"
@@ -268,6 +272,7 @@ surface_material_override/4 = SubResource("StandardMaterial3D_yu0or")
 surface_material_override/0 = SubResource("StandardMaterial3D_trbqa")
 surface_material_override/1 = SubResource("StandardMaterial3D_yrx7l")
 surface_material_override/2 = SubResource("StandardMaterial3D_l277a")
+surface_material_override/3 = SubResource("StandardMaterial3D_7sao5")
 
 [node name="AnimationPlayer_1" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera3D")
