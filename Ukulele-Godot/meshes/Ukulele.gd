@@ -101,4 +101,11 @@ func _process(delta):
 			print("Done")
 			state = ST_WAIT_USER_INPUT
 
-
+func _input(event):
+	#print(event.as_text())
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print("is InputEventMouseButton")
+			time_ref = 0
+			acc = 0
+			state = ST_WAIT_START
