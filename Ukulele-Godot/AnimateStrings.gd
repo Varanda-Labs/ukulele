@@ -7,6 +7,7 @@ var _NOTE_FACTOR = 1.05946
 
 var _notes_factors = [
 	1.0,
+	
 	1.05946,
 	1.1224554916000002,
 	1.1891966951305362,
@@ -37,9 +38,33 @@ var _notes_names = {
 	"A+": 12,
 }
 
-	
-
-
+const _midi_notes = {
+	62: { "name": "D4", "factor_idx": 0, "pitch_file_idx": 0},
+	63: { "name": "D4#", "factor_idx": 0, "pitch_file_idx": 0},
+	64: { "name": "E4", "factor_idx": 0, "pitch_file_idx": 0},
+	65: { "name": "F4", "factor_idx": 0, "pitch_file_idx": 0},
+	66: { "name": "F4#", "factor_idx": 0, "pitch_file_idx": 0},
+	67: { "name": "G4", "factor_idx": 0, "pitch_file_idx": 0},
+	68: { "name": "G4#", "factor_idx": 0, "pitch_file_idx": 0},
+	69: { "name": "A4", "factor_idx": 0, "pitch_file_idx": 0},
+	70: { "name": "A4#", "factor_idx": 0, "pitch_file_idx": 0},
+	71: { "name": "B4", "factor_idx": 0, "pitch_file_idx": 0},
+	72: { "name": "C5", "factor_idx": 0, "pitch_file_idx": 0},
+	73: { "name": "DC#", "factor_idx": 0, "pitch_file_idx": 0},
+	74: { "name": "D5", "factor_idx": 0, "pitch_file_idx": 0},
+	75: { "name": "D5#", "factor_idx": 0, "pitch_file_idx": 0},
+	76: { "name": "E5", "factor_idx": 0, "pitch_file_idx": 0},
+	77: { "name": "F5", "factor_idx": 0, "pitch_file_idx": 0},
+	78: { "name": "F5#", "factor_idx": 0, "pitch_file_idx": 0},
+	79: { "name": "G5", "factor_idx": 0, "pitch_file_idx": 0},
+	80: { "name": "G5#", "factor_idx": 0, "pitch_file_idx": 0},
+	81: { "name": "A5", "factor_idx": 0, "pitch_file_idx": 0},
+	82: { "name": "A5#", "factor_idx": 0, "pitch_file_idx": 0},
+	83: { "name": "B5", "factor_idx": 0, "pitch_file_idx": 0},
+	84: { "name": "C5", "factor_idx": 0, "pitch_file_idx": 0},
+	85: { "name": "C5#", "factor_idx": 0, "pitch_file_idx": 0},
+	86: { "name": "D6", "factor_idx": 0, "pitch_file_idx": 0},
+}
 
 func _on_play(v, _stop = false):
 	print("_on_play: " + str(v))
