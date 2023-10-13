@@ -274,6 +274,48 @@ surface_material_override/1 = SubResource("StandardMaterial3D_yrx7l")
 surface_material_override/2 = SubResource("StandardMaterial3D_l277a")
 surface_material_override/3 = SubResource("StandardMaterial3D_7sao5")
 
+[node name="Empty_01" parent="Ukulele" index="3"]
+visible = false
+
+[node name="Empty_02" parent="Ukulele" index="4"]
+visible = false
+
+[node name="Empty_03" parent="Ukulele" index="5"]
+visible = false
+
+[node name="Empty_04" parent="Ukulele" index="6"]
+visible = false
+
+[node name="Empty_05" parent="Ukulele" index="7"]
+visible = false
+
+[node name="Empty_06" parent="Ukulele" index="8"]
+visible = false
+
+[node name="Empty_07" parent="Ukulele" index="9"]
+visible = false
+
+[node name="Empty_08" parent="Ukulele" index="10"]
+visible = false
+
+[node name="Empty_09" parent="Ukulele" index="11"]
+visible = false
+
+[node name="Empty_010" parent="Ukulele" index="12"]
+visible = false
+
+[node name="Empty_011" parent="Ukulele" index="13"]
+visible = false
+
+[node name="Empty_012" parent="Ukulele" index="14"]
+visible = false
+
+[node name="Empty_101" parent="Ukulele" index="15"]
+visible = false
+
+[node name="Empty_201" parent="Ukulele" index="16"]
+visible = false
+
 [node name="AnimationPlayer_1" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Camera3D")
 libraries = {
