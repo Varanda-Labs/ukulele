@@ -84,6 +84,9 @@ func _play_string(n, stop = false):
 		
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var midi_parser = SMF.new()
+	var r = midi_parser.read_file("res://midis/Ammerbach-Passamezzo-Antico.mid")
+	print("parsed Ammerbach-Passamezzo-Antico.mid")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
