@@ -38,32 +38,39 @@ var _notes_names = {
 	"A+": 12,
 }
 
+const _string_midi_code = [
+	71, # string 1, first string, base zero (bottom)
+	66, # string 2
+	64, # string 3
+	69  # string 4 (top)
+]
+
 const _midi_notes = {
-	62: { "name": "D4", "factor_idx": 0, "pitch_file_idx": 0},
+	62: { "name": "D4",  "factor_idx": 0, "pitch_file_idx": 0},
 	63: { "name": "D4#", "factor_idx": 0, "pitch_file_idx": 0},
-	64: { "name": "E4", "factor_idx": 0, "pitch_file_idx": 0},
-	65: { "name": "F4", "factor_idx": 0, "pitch_file_idx": 0},
+	64: { "name": "E4",  "factor_idx": 0, "pitch_file_idx": 0},
+	65: { "name": "F4",  "factor_idx": 0, "pitch_file_idx": 0},
 	66: { "name": "F4#", "factor_idx": 0, "pitch_file_idx": 0},
-	67: { "name": "G4", "factor_idx": 0, "pitch_file_idx": 0},
+	67: { "name": "G4",  "factor_idx": 0, "pitch_file_idx": 0},
 	68: { "name": "G4#", "factor_idx": 0, "pitch_file_idx": 0},
-	69: { "name": "A4", "factor_idx": 0, "pitch_file_idx": 0},
-	70: { "name": "A4#", "factor_idx": 0, "pitch_file_idx": 0},
-	71: { "name": "B4", "factor_idx": 0, "pitch_file_idx": 0},
-	72: { "name": "C5", "factor_idx": 0, "pitch_file_idx": 0},
-	73: { "name": "DC#", "factor_idx": 0, "pitch_file_idx": 0},
-	74: { "name": "D5", "factor_idx": 0, "pitch_file_idx": 0},
-	75: { "name": "D5#", "factor_idx": 0, "pitch_file_idx": 0},
-	76: { "name": "E5", "factor_idx": 0, "pitch_file_idx": 0},
-	77: { "name": "F5", "factor_idx": 0, "pitch_file_idx": 0},
-	78: { "name": "F5#", "factor_idx": 0, "pitch_file_idx": 0},
-	79: { "name": "G5", "factor_idx": 0, "pitch_file_idx": 0},
-	80: { "name": "G5#", "factor_idx": 0, "pitch_file_idx": 0},
-	81: { "name": "A5", "factor_idx": 0, "pitch_file_idx": 0},
-	82: { "name": "A5#", "factor_idx": 0, "pitch_file_idx": 0},
-	83: { "name": "B5", "factor_idx": 0, "pitch_file_idx": 0},
-	84: { "name": "C5", "factor_idx": 0, "pitch_file_idx": 0},
-	85: { "name": "C5#", "factor_idx": 0, "pitch_file_idx": 0},
-	86: { "name": "D6", "factor_idx": 0, "pitch_file_idx": 0},
+	69: { "name": "A4",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,0],[2,7],[1,3]]},
+	70: { "name": "A4#", "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,1],[2,8],[1,4]]},
+	71: { "name": "B4",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,2],[2,9],[1,5],[0,0]]},
+	72: { "name": "C5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,3],[2,10],[1,6],[0,1]]},
+	73: { "name": "D5#", "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,4],[2,11],[1,7],[0,20]]},
+	74: { "name": "D5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,5],[2,12],[1,8],[0,30]]},
+	75: { "name": "D5#", "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,6],       [1,9],[0,40]]},
+	76: { "name": "E5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,7],       [1,10],[0,50]]},
+	77: { "name": "F5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,8],       [1,11],[0,60]]},
+	78: { "name": "F5#", "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,9],       [1,12],[0,70]]},
+	79: { "name": "G5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,10],             [0,80]]},
+	80: { "name": "G5#", "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,11],             [0,90]]},
+	81: { "name": "A5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[[3,12],             [0,10]]},
+	82: { "name": "A5#", "factor_idx": 0, "pitch_file_idx": 0, "pos":                    [[0,11]]},
+	83: { "name": "B5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":                    [[0,12]]},
+	84: { "name": "C5",  "factor_idx": 0, "pitch_file_idx": 0, "pos":                    [[0,13]]},
+	85: { "name": "C5#", "factor_idx": 0, "pitch_file_idx": 0, "pos":                    [[0,14]]},
+	86: { "name": "D6",  "factor_idx": 0, "pitch_file_idx": 0, "pos":                    [[0,15]]},
 }
 
 func _on_play(v, _stop = false):
