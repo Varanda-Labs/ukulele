@@ -58,13 +58,13 @@ const _key_to_note = {
 	KEY_COMMA: { "midi_code" = 74, "string" = 4},
 }
 
-var state = ST_JUST_LOAD
-var time_ref = -1
-var acc = 0
+var _state = ST_WAIT_USER_INPUT # ST_JUST_LOAD
+var _time_ref = -1
+var _acc = 0
 
-const DELAY_1 = 1
+const _DELAY_1 = 1
 
-func play_string(n, stop = false):
+func _play_string(n, stop = false):
 	var s
 	if n == 1:
 		s = play_string_1_requested
@@ -88,71 +88,71 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	acc = acc + delta
-	if  state == ST_JUST_LOAD:
-		time_ref = 0
-		acc = 0
-		state = ST_WAIT_START
+	_acc = _acc + delta
+	if  _state == ST_JUST_LOAD:
+		_time_ref = 0
+		_acc = 0
+		_state = ST_WAIT_START
 		
-	elif state == ST_WAIT_START:
-		if acc > time_ref + DELAY_1/2:
-			time_ref = 0
-			acc = 0
+	elif _state == ST_WAIT_START:
+		if _acc > _time_ref + _DELAY_1/2:
+			_time_ref = 0
+			_acc = 0
 			print("Play Anim 1")
-			play_string(1)
-			state = ST_PLAYING_1
+			_play_string(1)
+			_state = ST_PLAYING_1
 			
-	elif state == ST_PLAYING_1:
-		if acc > time_ref + DELAY_1:
-			time_ref = 0
-			acc = 0
+	elif _state == ST_PLAYING_1:
+		if _acc > _time_ref + _DELAY_1:
+			_time_ref = 0
+			_acc = 0
 			print("Play Anim 2")
-			play_string(2)
-			state = ST_PLAYING_2
+			_play_string(2)
+			_state = ST_PLAYING_2
 			
-	elif state == ST_PLAYING_2:
-		if acc > time_ref + DELAY_1:
-			time_ref = 0
-			acc = 0
+	elif _state == ST_PLAYING_2:
+		if _acc > _time_ref + _DELAY_1:
+			_time_ref = 0
+			_acc = 0
 			print("Play Anim 3")
-			play_string(3)
-			state = ST_PLAYING_3
+			_play_string(3)
+			_state = ST_PLAYING_3
 			
-	elif state == ST_PLAYING_3:
-		if acc > time_ref + DELAY_1:
-			time_ref = 0
-			acc = 0
+	elif _state == ST_PLAYING_3:
+		if _acc > _time_ref + _DELAY_1:
+			_time_ref = 0
+			_acc = 0
 			print("Play Anim 4")
-			play_string(4)
-			state = ST_PLAYING_4
+			_play_string(4)
+			_state = ST_PLAYING_4
 			
-	elif state == ST_PLAYING_4:
-		if acc > time_ref + DELAY_1:
-			time_ref = 0
-			acc = 0
+	elif _state == ST_PLAYING_4:
+		if _acc > _time_ref + _DELAY_1:
+			_time_ref = 0
+			_acc = 0
 			print("Play Anim All")
 			#stop()
-			play_string(1)
-			play_string(2)
-			play_string(3)
-			play_string(4)
+			_play_string(1)
+			_play_string(2)
+			_play_string(3)
+			_play_string(4)
 
-			state = ST_PLAYING_ALL
+			_state = ST_PLAYING_ALL
 			
-	elif state == ST_PLAYING_ALL:
-		if acc > time_ref + DELAY_1:
-			time_ref = acc
+	elif _state == ST_PLAYING_ALL:
+		if _acc > _time_ref + _DELAY_1:
+			_time_ref = _acc
 			print("Done")
-			state = ST_WAIT_USER_INPUT
+			_state = ST_WAIT_USER_INPUT
 
 func _input(event):
 	#print(event.as_text())
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("is InputEventMouseButton")
-			time_ref = 0
-			acc = 0
-			state = ST_WAIT_START
+			_time_ref = 0
+			_acc = 0
+			_state = ST_WAIT_START
 	if event is InputEventKey:
 		if event.pressed and _key_to_note.has(event.keycode):
 			play_MIDI_requested.emit(_key_to_note[event.keycode].midi_code, _key_to_note[event.keycode].string,)

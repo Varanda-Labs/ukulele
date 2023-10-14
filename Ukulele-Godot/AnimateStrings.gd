@@ -130,6 +130,7 @@ func _ready():
 	ukulele_node.play_MIDI_requested.connect(_on_midi_play)
 
 func _on_midi_play(code, string_base_1):
+	# need to only play using the instance associated with the string
 	if self.name == "AnimationPlayer_1" && string_base_1 != 1:
 		return
 	if self.name == "AnimationPlayer_2" && string_base_1 != 2:
