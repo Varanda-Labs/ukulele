@@ -49,39 +49,47 @@ var _notes_names = {
 }
 
 const _string_midi_code = [
-	71, # string 1, first string, base zero (bottom)
-	66, # string 2
-	62, # string 3
-	69  # string 4 (top)
+	69, # string 1, A4 first string, base zero (bottom)
+	64, # string 2, E4
+	60, # string 3, C4
+	67  # string 4, G4 (top) A
 ]
 
+# string is base 1, fret is base 1 but no fret values is zero
 const _midi_notes = {
-	62: { "name": "D4",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[      [2,0]]              },
-	63: { "name": "D4#", "factor_idx": 1, "pitch_file_idx": 0, "pos":[      [2,1]]              },
-	64: { "name": "E4",  "factor_idx": 2, "pitch_file_idx": 0, "pos":[      [2,2]]              },
-	65: { "name": "F4",  "factor_idx": 3, "pitch_file_idx": 0, "pos":[      [2,3]]              },
-	66: { "name": "F4#", "factor_idx": 4, "pitch_file_idx": 0, "pos":[      [2,4], [1,0]]       },
-	67: { "name": "G4",  "factor_idx": 5, "pitch_file_idx": 0, "pos":[      [2,5], [1,1]]       },
-	68: { "name": "G4#", "factor_idx": 6, "pitch_file_idx": 0, "pos":[      [2,6], [1,2]]       },
-	69: { "name": "A4",  "factor_idx": 0, "pitch_file_idx": 1, "pos":[[3,0],[2,7], [1,3]]       },
-	70: { "name": "A4#", "factor_idx": 1, "pitch_file_idx": 1, "pos":[[3,1],[2,8], [1,4]]       },
-	71: { "name": "B4",  "factor_idx": 2, "pitch_file_idx": 1, "pos":[[3,2],[2,9], [1,5], [0,0]]},
-	72: { "name": "C5",  "factor_idx": 3, "pitch_file_idx": 1, "pos":[[3,3],[2,10],[1,6], [0,1]]},
-	73: { "name": "D5#", "factor_idx": 4, "pitch_file_idx": 1, "pos":[[3,4],[2,11],[1,7], [0,2]]},
-	74: { "name": "D5",  "factor_idx": 5, "pitch_file_idx": 1, "pos":[[3,5],[2,12],[1,8], [0,3]]},
-	75: { "name": "D5#", "factor_idx": 6, "pitch_file_idx": 1, "pos":[[3,6],       [1,9], [0,4]]},
-	76: { "name": "E5",  "factor_idx": 7, "pitch_file_idx": 1, "pos":[[3,7],       [1,10],[0,5]]},
-	77: { "name": "F5",  "factor_idx": 8, "pitch_file_idx": 1, "pos":[[3,8],       [1,11],[0,6]]},
-	78: { "name": "F5#", "factor_idx": 9, "pitch_file_idx": 1, "pos":[[3,9],       [1,12],[0,7]]},
-	79: { "name": "G5",  "factor_idx": 10, "pitch_file_idx": 1, "pos":[[3,10],             [0,8]]},
-	80: { "name": "G5#", "factor_idx": 11, "pitch_file_idx": 1, "pos":[[3,11],             [0,9]]},
-	81: { "name": "A5",  "factor_idx": 12, "pitch_file_idx": 1, "pos":[[3,12],             [0,1]]},
-	82: { "name": "A5#", "factor_idx": 13, "pitch_file_idx": 1, "pos":                    [[0,11]]},
-	83: { "name": "B5",  "factor_idx": 14, "pitch_file_idx": 1, "pos":                    [[0,12]]},
-	84: { "name": "C5",  "factor_idx": 15, "pitch_file_idx": 1, "pos":                    [[0,13]]},
-	85: { "name": "C5#", "factor_idx": 16, "pitch_file_idx": 1, "pos":                    [[0,14]]},
-	86: { "name": "D6",  "factor_idx": 17, "pitch_file_idx": 1, "pos":                    [[0,15]]},
+	60: { "name": "C4",  "factor_idx": 0, "pitch_file_idx": 0, "pos":[      [3,0]]              },
+	61: { "name": "C4#", "factor_idx": 1, "pitch_file_idx": 0, "pos":[      [3,1]]              },
+	62: { "name": "D4",  "factor_idx": 2, "pitch_file_idx": 0, "pos":[      [3,2]]              },
+	63: { "name": "D4#", "factor_idx": 3, "pitch_file_idx": 0, "pos":[      [3,3]]              },
+	64: { "name": "E4",  "factor_idx": 4, "pitch_file_idx": 0, "pos":[      [3,4],  [2,0]]      },
+	65: { "name": "F4",  "factor_idx": 5, "pitch_file_idx": 0, "pos":[      [3,5],  [2,1]]      },
+	66: { "name": "F4#", "factor_idx": 6, "pitch_file_idx": 0, "pos":[      [3,6],  [2,2]]      },
+	67: { "name": "G4",  "factor_idx": 7, "pitch_file_idx": 0, "pos":[[4,0],[3,7],  [2,3]]      },
+	68: { "name": "G4#", "factor_idx": 8, "pitch_file_idx": 0, "pos":[[4,1],[3,8],  [2,4]]      },
+	69: { "name": "A4",  "factor_idx": 0, "pitch_file_idx": 1, "pos":[[4,2],[3,9],  [2,5], [1,0]]},
+	70: { "name": "A4#", "factor_idx": 1, "pitch_file_idx": 1, "pos":[[4,3],[3,10], [2,6], [1,1]]},
+	71: { "name": "B4",  "factor_idx": 2, "pitch_file_idx": 1, "pos":[[4,4],[3,11], [2,7], [1,2]]},
+	72: { "name": "C5",  "factor_idx": 3, "pitch_file_idx": 1, "pos":[[4,5],[3,12], [2,8], [1,3]]},
+	73: { "name": "D5#", "factor_idx": 4, "pitch_file_idx": 1, "pos":[[4,6],       [2,9], [1,4]]},
+	74: { "name": "D5",  "factor_idx": 5, "pitch_file_idx": 1, "pos":[[4,7],       [2,10], [1,5]]},
+	75: { "name": "D5#", "factor_idx": 6, "pitch_file_idx": 1, "pos":[[4,8],       [2,11], [1,6]]},
+	76: { "name": "E5",  "factor_idx": 7, "pitch_file_idx": 1, "pos":[[4,9],       [2,12],[1,7]]},
+	77: { "name": "F5",  "factor_idx": 8, "pitch_file_idx": 1, "pos":[[4,10],             [1,8]]},
+	78: { "name": "F5#", "factor_idx": 9, "pitch_file_idx": 1, "pos":[[4,11],             [1,9]]},
+	79: { "name": "G5",  "factor_idx": 10, "pitch_file_idx": 1, "pos":[[4,12],            [1,10]]},
+	80: { "name": "G5#", "factor_idx": 11, "pitch_file_idx": 1, "pos":[                   [1,11]]},
+	81: { "name": "A5",  "factor_idx": 12, "pitch_file_idx": 1, "pos":[                   [1,12]]},
+	82: { "name": "A5#", "factor_idx": 13, "pitch_file_idx": 1, "pos":                    [[1,13]]},
+	83: { "name": "B5",  "factor_idx": 14, "pitch_file_idx": 1, "pos":                    [[1,14]]},
+	84: { "name": "C5",  "factor_idx": 15, "pitch_file_idx": 1, "pos":                    [[1,15]]},
 }
+const _string_animation_names = [
+	"dummy_base_1", "String-1", "String-2", "String-3", "String-4", 
+]
+
+func _play_animation(string_num_base_1):
+	stop()
+	play(_string_animation_names[string_num_base_1])
 
 func _on_play(v, _stop = false):
 	print("_on_play: " + str(v))
@@ -119,6 +127,19 @@ func _ready():
 		ukulele_node.play_string_3_requested.connect(_on_play)
 	elif self.name == "AnimationPlayer_4":
 		ukulele_node.play_string_4_requested.connect(_on_play)
+	ukulele_node.play_MIDI_requested.connect(_on_midi_play)
+
+func _on_midi_play(code, string_base_1):
+	if self.name == "AnimationPlayer_1" && string_base_1 != 1:
+		return
+	if self.name == "AnimationPlayer_2" && string_base_1 != 2:
+		return
+	if self.name == "AnimationPlayer_3" && string_base_1 != 3:
+		return
+	if self.name == "AnimationPlayer_4" && string_base_1 != 4:
+		return
+	_play_animation(string_base_1)
+	_play_note(code)
 
 func _play_note(n):
 	print("_play_note code: " + str(n))

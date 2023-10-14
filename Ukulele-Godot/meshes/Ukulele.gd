@@ -4,6 +4,7 @@ signal play_string_1_requested
 signal play_string_2_requested
 signal play_string_3_requested
 signal play_string_4_requested
+signal play_MIDI_requested
 
 enum { ST_JUST_LOAD,
  ST_WAIT_START,
@@ -13,6 +14,49 @@ enum { ST_JUST_LOAD,
  ST_PLAYING_4,
  ST_PLAYING_ALL,
  ST_WAIT_USER_INPUT }
+
+#	69, # string 1, A4 first string, base zero (bottom)
+#	64, # string 2, E4
+#	60, # string 3, C4
+#	67  # string 4, G4 (top) A
+	
+const _key_to_note = {
+	KEY_1: { "midi_code" = 69, "string" = 1},
+	KEY_2: { "midi_code" = 70, "string" = 1},
+	KEY_3: { "midi_code" = 71, "string" = 1},
+	KEY_4: { "midi_code" = 72, "string" = 1},
+	KEY_5: { "midi_code" = 73, "string" = 1},
+	KEY_6: { "midi_code" = 74, "string" = 1},
+	KEY_7: { "midi_code" = 75, "string" = 1},
+	KEY_8: { "midi_code" = 76, "string" = 1},
+	
+	KEY_Q: { "midi_code" = 64, "string" = 2},
+	KEY_W: { "midi_code" = 65, "string" = 2},
+	KEY_E: { "midi_code" = 66, "string" = 2},
+	KEY_R: { "midi_code" = 67, "string" = 2},
+	KEY_T: { "midi_code" = 68, "string" = 2},
+	KEY_Y: { "midi_code" = 69, "string" = 2},
+	KEY_U: { "midi_code" = 70, "string" = 2},
+	KEY_I: { "midi_code" = 71, "string" = 2},
+
+	KEY_A: { "midi_code" = 60, "string" = 3},
+	KEY_S: { "midi_code" = 61, "string" = 3},
+	KEY_D: { "midi_code" = 62, "string" = 3},
+	KEY_F: { "midi_code" = 63, "string" = 3},
+	KEY_G: { "midi_code" = 64, "string" = 3},
+	KEY_H: { "midi_code" = 65, "string" = 3},
+	KEY_J: { "midi_code" = 66, "string" = 3},
+	KEY_K: { "midi_code" = 67, "string" = 3},
+
+	KEY_Z: { "midi_code" = 67, "string" = 4},
+	KEY_X: { "midi_code" = 68, "string" = 4},
+	KEY_C: { "midi_code" = 69, "string" = 4},
+	KEY_V: { "midi_code" = 70, "string" = 4},
+	KEY_B: { "midi_code" = 71, "string" = 4},
+	KEY_N: { "midi_code" = 72, "string" = 4},
+	KEY_M: { "midi_code" = 73, "string" = 4},
+	KEY_COMMA: { "midi_code" = 74, "string" = 4},
+}
 
 var state = ST_JUST_LOAD
 var time_ref = -1
@@ -109,3 +153,7 @@ func _input(event):
 			time_ref = 0
 			acc = 0
 			state = ST_WAIT_START
+	if event is InputEventKey:
+		if event.pressed and _key_to_note.has(event.keycode):
+			play_MIDI_requested.emit(_key_to_note[event.keycode].midi_code, _key_to_note[event.keycode].string,)
+		
