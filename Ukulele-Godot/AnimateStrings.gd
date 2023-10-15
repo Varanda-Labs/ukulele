@@ -89,44 +89,10 @@ const _string_animation_names = [
 
 func _play_animation(string_num_base_1):
 	stop()
-	play(_string_animation_names[string_num_base_1])
-
-func _on_play(v, _stop = false):
-	print("_on_play: " + str(v))
-	var s
-	var note = ""
-	if v == 1:
-		s = "String-1"
-		note = _string_midi_code[0]
-	elif v == 2:
-		s = "String-2"
-		note = _string_midi_code[1]
-	elif v == 3:
-		s = "String-3"
-		note = _string_midi_code[2]
-	elif v == 4:
-		s = "String-4"
-		note = _string_midi_code[3]
-	else:
-		print("wrong node")
-		return
-	if _stop == true:
-		stop()
-	else:
-		play(s)
-		_play_note(note)
-	
+	play(_string_animation_names[string_num_base_1])	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if self.name == "AnimationPlayer_1":
-		ukulele_node.play_string_1_requested.connect(_on_play)
-	elif self.name == "AnimationPlayer_2":
-		ukulele_node.play_string_2_requested.connect(_on_play)
-	elif self.name == "AnimationPlayer_3":
-		ukulele_node.play_string_3_requested.connect(_on_play)
-	elif self.name == "AnimationPlayer_4":
-		ukulele_node.play_string_4_requested.connect(_on_play)
 	ukulele_node.play_MIDI_requested.connect(_on_midi_play)
 
 func _on_midi_play(code, string_base_1):

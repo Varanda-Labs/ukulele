@@ -59,6 +59,8 @@ const _key_to_note = {
 }
 
 var _state = ST_WAIT_USER_INPUT # ST_JUST_LOAD
+#var _state = ST_JUST_LOAD
+
 var _time_ref = -1
 var _acc = 0
 
@@ -67,20 +69,18 @@ const _DELAY_1 = 1
 func _play_string(n, stop = false):
 	var s
 	if n == 1:
-		s = play_string_1_requested
+		s = 69
 	elif n == 2:
-		s =  play_string_2_requested
+		s =  64
 	elif n == 3:
-		s =  play_string_3_requested
+		s =  60
 	elif n == 4:
-		s =  play_string_4_requested
+		s =  67
 	else:
 		print("bad string")
 		return
-	#we fist stop previous animation
-	s.emit(n, true)
-	if stop == false:
-		s.emit(n)
+	play_MIDI_requested.emit(s, n)
+
 		
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -158,5 +158,5 @@ func _input(event):
 			_state = ST_WAIT_START
 	if event is InputEventKey:
 		if event.pressed and _key_to_note.has(event.keycode):
-			play_MIDI_requested.emit(_key_to_note[event.keycode].midi_code, _key_to_note[event.keycode].string,)
+			play_MIDI_requested.emit(_key_to_note[event.keycode].midi_code, _key_to_note[event.keycode].string)
 		
