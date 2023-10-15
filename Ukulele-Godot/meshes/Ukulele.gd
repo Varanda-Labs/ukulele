@@ -66,6 +66,7 @@ var _state = ST_WAIT_USER_INPUT # ST_JUST_LOAD
 
 var _time_ref = -1
 var _acc = 0
+var _overtone = 0
 
 const _DELAY_1 = 1
 
@@ -84,12 +85,17 @@ func _play_string(n, stop = false):
 		return
 	play_MIDI_requested.emit(s, n)
 
-		
+const TEST_MIDI = "res://midis/stairway.mid"
+const TEST_OVERTONE = 13
+
+#const TEST_MIDI = "res://midis/Ammerbach-Passamezzo-Antico.mid"
+#const TEST_OVERTONE = 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var midi_parser = SMF.new()
-	var r = midi_parser.read_file("res://midis/Ammerbach-Passamezzo-Antico.mid")
-	print("parsed Ammerbach-Passamezzo-Antico.mid")
+	var r = midi_parser.read_file(TEST_MIDI)
+	print("parsed " + TEST_MIDI)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -160,8 +166,8 @@ func _process(delta):
 			else:
 				var e = _active_events_array[_event_idx]
 				if e.event.type == SMF.MIDIEventType.note_on:
-					print("play note: " + str(e.event.note))
-					play_MIDI_requested.emit(e.event.note, 1)
+					print("play note: " + str(e.event.note  + _overtone) + ", time: " + str(e.time))
+					play_MIDI_requested.emit(e.event.note + _overtone, 1)
 				_time_ref = 0
 				_acc = 0
 				
@@ -178,7 +184,8 @@ var _midi_obj = null
 var _active_events_array = null
 var _event_idx = 0
 
-func _play_midi_file(filename):
+func _play_midi_file(filename, overtone):
+	_overtone = overtone
 	var midi_parser = SMF.new()
 	_midi_obj = midi_parser.read_file(filename)
 	if _midi_obj.error != OK:
@@ -212,7 +219,7 @@ func _input(event):
 			if _key_to_note.has(event.keycode):
 				play_MIDI_requested.emit(_key_to_note[event.keycode].midi_code, _key_to_note[event.keycode].string)
 			elif event.keycode == KEY_P:
-				_play_midi_file("res://midis/Ammerbach-Passamezzo-Antico.mid")
+				_play_midi_file(TEST_MIDI, TEST_OVERTONE) #"res://midis/Ammerbach-Passamezzo-Antico.mid")
 			elif event.keycode == KEY_L:
 				_time_ref = 0
 				_acc = 0

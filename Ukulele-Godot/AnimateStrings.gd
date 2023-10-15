@@ -109,17 +109,17 @@ func _on_midi_play(code, string_base_1):
 	_play_note(code)
 
 func _play_note(n):
-	print("_play_note code: " + str(n))
+	#print("_play_note code: " + str(n))
 	if _midi_notes.has(n) == false:
 		print("bad note code: " + str(n))
 		return
 		# "factor_idx": 0, "pitch_file_idx"
 	var audio := AudioStreamPlayer.new()
 	add_child(audio)
-	print("_midi_notes[n].pitch_file_idx: " + str(_midi_notes[n].pitch_file_idx))
+	#print("_midi_notes[n].pitch_file_idx: " + str(_midi_notes[n].pitch_file_idx))
 	audio.stream = _pitch_samples[_midi_notes[n].pitch_file_idx]  #preload("res://tunes/ukulele_la.440.wav")
 	var factor_idx = _midi_notes[n].factor_idx
-	print("factor idx = " + str(factor_idx))
+	#print("factor idx = " + str(factor_idx))
 	audio.pitch_scale = _notes_factors[factor_idx ]  #_notes_factors[_notes_names[n]]
 	audio.play()
 	#color_timer.start()
