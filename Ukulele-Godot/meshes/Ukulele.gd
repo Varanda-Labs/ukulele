@@ -13,6 +13,9 @@ enum { ST_JUST_LOAD,
  ST_PLAYING_3,
  ST_PLAYING_4,
  ST_PLAYING_ALL,
+
+ ST_START_MIDI,
+ ST_PLAYING_MIDI,
  ST_WAIT_USER_INPUT }
 
 #	69, # string 1, A4 first string, base zero (bottom)
@@ -141,22 +144,77 @@ func _process(delta):
 			_play_string(4)
 
 			_state = ST_PLAYING_ALL
+	
+	elif _state == ST_START_MIDI:
+		_event_idx = -1
+		_time_ref = 0
+		_acc = 0
+		_state = ST_PLAYING_MIDI	
+		
+	elif _state == ST_PLAYING_MIDI:
+		if _acc > _time_ref + 0.100:
+			_event_idx += 1
+			if _event_idx >= _active_events_array.size():
+				print("MIDI done")
+				_state = ST_WAIT_USER_INPUT
+			else:
+				var e = _active_events_array[_event_idx]
+				if e.event.type == SMF.MIDIEventType.note_on:
+					print("play note: " + str(e.event.note))
+					play_MIDI_requested.emit(e.event.note, 1)
+				_time_ref = 0
+				_acc = 0
+				
 			
+			
+					
 	elif _state == ST_PLAYING_ALL:
 		if _acc > _time_ref + _DELAY_1:
 			_time_ref = _acc
 			print("Done")
 			_state = ST_WAIT_USER_INPUT
+			
+var _midi_obj = null
+var _active_events_array = null
+var _event_idx = 0
+
+func _play_midi_file(filename):
+	var midi_parser = SMF.new()
+	_midi_obj = midi_parser.read_file(filename)
+	if _midi_obj.error != OK:
+		print("Parser error for file: " + filename)
+		return
+	print("midi file: " + filename)
+	print("  timiebase: " + str(_midi_obj.data.timebase))
+	print("  num tracks: " + str(_midi_obj.data.track_count))
+	var max_track = -1
+	if _midi_obj.data.track_count < 0:
+		print("No track found")
+		return
+
+	for t in _midi_obj.data.tracks:
+		print( "    track_number " + str(t.track_number) + " has " + str(t.events.size()) + " events")
+		if t.events.size() > max_track:
+			_active_events_array = t.events
+			max_track = t.events.size()
+		_state = ST_START_MIDI
 
 func _input(event):
 	#print(event.as_text())
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("is InputEventMouseButton")
-			_time_ref = 0
-			_acc = 0
-			_state = ST_WAIT_START
+#	if event is InputEventMouseButton:
+#		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+#			print("is InputEventMouseButton")
+#			_time_ref = 0
+#			_acc = 0
+#			_state = ST_WAIT_START
 	if event is InputEventKey:
-		if event.pressed and _key_to_note.has(event.keycode):
-			play_MIDI_requested.emit(_key_to_note[event.keycode].midi_code, _key_to_note[event.keycode].string)
+		if event.pressed:
+			if _key_to_note.has(event.keycode):
+				play_MIDI_requested.emit(_key_to_note[event.keycode].midi_code, _key_to_note[event.keycode].string)
+			elif event.keycode == KEY_P:
+				_play_midi_file("res://midis/Ammerbach-Passamezzo-Antico.mid")
+			elif event.keycode == KEY_L:
+				_time_ref = 0
+				_acc = 0
+				_state = ST_WAIT_START
 		
