@@ -1,3 +1,11 @@
+#########################################
+#
+#        Part of Ukulele App
+#
+#  Copyrights: Varanda Labs 2023
+#
+##########################################
+
 extends Node3D
 
 signal play_string_1_requested

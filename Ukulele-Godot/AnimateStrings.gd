@@ -1,3 +1,11 @@
+
+#########################################
+#
+#        Part of Ukulele App
+#
+#  Copyrights: Varanda Labs 2023
+#
+##########################################
 extends AnimationPlayer
 
 @onready var game_root_node = $/root/Node3D
