@@ -4,6 +4,10 @@ Carlos Capanga
 https://www.blendswap.com/blend/17661
 License: CC-BY
 
+MIDI file parser:
+Yui Kinomoto
+https://bitbucket.org/arlez80/godot-midi-player
+
 Low poly hand:
 Evil Kris
 https://www.blendswap.com/blend/26249
