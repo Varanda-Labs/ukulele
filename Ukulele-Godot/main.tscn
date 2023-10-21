@@ -1,10 +1,10 @@
 [gd_scene load_steps=31 format=3 uid="uid://dilrp1omy2wh"]
 
-[ext_resource type="PackedScene" uid="uid://ctv6mboqqwy7x" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
+[ext_resource type="PackedScene" uid="uid://drdhsjtcxi7pm" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
 [ext_resource type="Script" path="res://meshes/Ukulele.gd" id="2_j3joj"]
-[ext_resource type="Texture2D" uid="uid://mcqew4fl51dn" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
-[ext_resource type="Texture2D" uid="uid://dmchd6glkqdec" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
-[ext_resource type="Texture2D" uid="uid://taylir2fjpwr" path="res://textures/face.png" id="4_mgerp"]
+[ext_resource type="Texture2D" uid="uid://ch0n4yvrfu7mf" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
+[ext_resource type="Texture2D" uid="uid://ch8ndoha3og4i" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
+[ext_resource type="Texture2D" uid="uid://cobquih2sqjc" path="res://textures/face.png" id="4_mgerp"]
 [ext_resource type="Script" path="res://AnimateStrings.gd" id="5_8k0le"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stjbi"]
@@ -243,10 +243,36 @@ light_volumetric_fog_energy = 0.515
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xvvae")
 
+[node name="Button" type="Button" parent="WorldEnvironment"]
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 95.0
+offset_bottom = 45.0
+text = "Play MIDI"
+
+[node name="Button2" type="Button" parent="WorldEnvironment"]
+offset_left = 119.0
+offset_top = 14.0
+offset_right = 162.0
+offset_bottom = 45.0
+text = "Stop"
+
+[node name="Label" type="Label" parent="WorldEnvironment"]
+offset_left = 9.0
+offset_top = 52.0
+offset_right = 225.0
+offset_bottom = 208.0
+text = "To play individual notes use keyboard:
+  keys:
+    1,2,3,4..  for string 1
+    q,w,e,r..  for string 2
+    a,s,d,f...  for string 3
+    z,x,c,v...  for string 4"
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.345171, -0.550472, 0.760156, -0.0706165, 0.792407, 0.605892, -0.935879, -0.262816, 0.234643, 10.8106, 10.8888, -0.306669)
-fov = 44.9
-near = 0.038
+transform = Transform3D(0.378899, -0.564509, 0.733324, -0.0689861, 0.772974, 0.630676, -0.922863, -0.289552, 0.253936, 10.8106, 10.8888, -0.306669)
+fov = 45.0
+near = 2.22
 
 [node name="ImporterMeshInstance3D" type="ImporterMeshInstance3D" parent="."]
 
@@ -343,5 +369,8 @@ libraries = {
 "": SubResource("AnimationLibrary_jyt0h")
 }
 script = ExtResource("5_8k0le")
+
+[connection signal="button_down" from="WorldEnvironment/Button" to="Ukulele" method="_on_play_midi_button_down"]
+[connection signal="button_down" from="WorldEnvironment/Button2" to="Ukulele" method="_on_stop_button_down"]
 
 [editable path="Ukulele"]

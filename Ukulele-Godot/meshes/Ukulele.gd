@@ -257,3 +257,11 @@ func _input(event):
 				_acc = 0
 				_state = ST_WAIT_START
 		
+
+
+func _on_play_midi_button_down():
+	_play_midi_file(TEST_MIDI, TEST_OVERTONE)
+
+
+func _on_stop_button_down():
+	_state = ST_WAIT_USER_INPUT
