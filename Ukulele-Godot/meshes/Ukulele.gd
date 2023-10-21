@@ -75,6 +75,12 @@ var _state = ST_WAIT_USER_INPUT # ST_JUST_LOAD
 var _time_ref = -1
 var _acc = 0
 var _overtone = 0
+var _time_clock = 0
+var _seconds_to_timebase:float = 2.3
+var _timebase_to_seconds:float = 1.0 / _seconds_to_timebase
+var _speed:float = 0.5
+var _pos:float = 0.0
+var _timebase:float = 0.0
 
 const _DELAY_1 = 1
 
@@ -160,24 +166,41 @@ func _process(delta):
 			_state = ST_PLAYING_ALL
 	
 	elif _state == ST_START_MIDI:
-		_event_idx = -1
+		_event_idx = 0
 		_time_ref = 0
 		_acc = 0
+		_pos = 0
 		_state = ST_PLAYING_MIDI	
 		
 	elif _state == ST_PLAYING_MIDI:
-		if _acc > _time_ref + 0.100:
-			_event_idx += 1
-			if _event_idx >= _active_events_array.size():
-				print("MIDI done")
-				_state = ST_WAIT_USER_INPUT
-			else:
-				var e = _active_events_array[_event_idx]
+		_time_clock += delta
+		_pos += _timebase * delta * _seconds_to_timebase * _speed
+
+		if _event_idx < _active_events_array.size():
+			var st = 1
+			var e:SMF.MIDIEventChunk
+			var tm
+			while 1:
+				e = _active_events_array[_event_idx]
+				tm = e.time
+				if tm > _pos: # not yet time to play the current _event_idx
+					break
+
 				if e.event.type == SMF.MIDIEventType.note_on:
-					print("play note: " + str(e.event.note  + _overtone) + ", time: " + str(e.time))
-					play_MIDI_requested.emit(e.event.note + _overtone, 1)
-				_time_ref = 0
-				_acc = 0
+					if st > 4:
+						print("no string left to play note at index " + str(_event_idx))
+						_event_idx += 1
+						break;
+					print("play note: " + str(e.event.note  + _overtone) + ", time: " + str(e.time), ", string: " + str(st))
+					play_MIDI_requested.emit(e.event.note + _overtone, st)
+					st += 1
+					
+				_event_idx += 1
+				if _event_idx >= _active_events_array.size():
+					break;
+		else:
+			print("MIDI done")
+			_state = ST_WAIT_USER_INPUT
 				
 			
 			
@@ -189,7 +212,7 @@ func _process(delta):
 			_state = ST_WAIT_USER_INPUT
 			
 var _midi_obj = null
-var _active_events_array = null
+var _active_events_array:Array[SMF.MIDIEventChunk]
 var _event_idx = 0
 
 func _play_midi_file(filename, overtone):
@@ -199,8 +222,9 @@ func _play_midi_file(filename, overtone):
 	if _midi_obj.error != OK:
 		print("Parser error for file: " + filename)
 		return
+	_timebase = _midi_obj.data.timebase
 	print("midi file: " + filename)
-	print("  timiebase: " + str(_midi_obj.data.timebase))
+	print("  timebase: " + str(_timebase))
 	print("  num tracks: " + str(_midi_obj.data.track_count))
 	var max_track = -1
 	if _midi_obj.data.track_count < 0:

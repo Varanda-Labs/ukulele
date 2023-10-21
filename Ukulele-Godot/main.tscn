@@ -1,10 +1,10 @@
 [gd_scene load_steps=31 format=3 uid="uid://dilrp1omy2wh"]
 
-[ext_resource type="PackedScene" uid="uid://bvaci1tvts5vj" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
+[ext_resource type="PackedScene" uid="uid://ctv6mboqqwy7x" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
 [ext_resource type="Script" path="res://meshes/Ukulele.gd" id="2_j3joj"]
-[ext_resource type="Texture2D" uid="uid://bpmg7w7nnl31s" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
-[ext_resource type="Texture2D" uid="uid://c17x2dk0r8yuv" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
-[ext_resource type="Texture2D" uid="uid://dvdhuqayq30ew" path="res://textures/face.png" id="4_mgerp"]
+[ext_resource type="Texture2D" uid="uid://mcqew4fl51dn" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
+[ext_resource type="Texture2D" uid="uid://dmchd6glkqdec" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
+[ext_resource type="Texture2D" uid="uid://taylir2fjpwr" path="res://textures/face.png" id="4_mgerp"]
 [ext_resource type="Script" path="res://AnimateStrings.gd" id="5_8k0le"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stjbi"]
