@@ -1,10 +1,10 @@
 [gd_scene load_steps=31 format=3 uid="uid://dilrp1omy2wh"]
 
-[ext_resource type="PackedScene" uid="uid://drdhsjtcxi7pm" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
+[ext_resource type="PackedScene" uid="uid://bvaci1tvts5vj" path="res://meshes/Ukulele.glb" id="1_tgrxy"]
 [ext_resource type="Script" path="res://meshes/Ukulele.gd" id="2_j3joj"]
-[ext_resource type="Texture2D" uid="uid://ch0n4yvrfu7mf" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
-[ext_resource type="Texture2D" uid="uid://ch8ndoha3og4i" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
-[ext_resource type="Texture2D" uid="uid://cobquih2sqjc" path="res://textures/face.png" id="4_mgerp"]
+[ext_resource type="Texture2D" uid="uid://bpmg7w7nnl31s" path="res://textures/ukulelewood.jpg" id="2_nnp3q"]
+[ext_resource type="Texture2D" uid="uid://c17x2dk0r8yuv" path="res://textures/ukulelewood_normal.png" id="3_cl4yk"]
+[ext_resource type="Texture2D" uid="uid://dvdhuqayq30ew" path="res://textures/face.png" id="4_mgerp"]
 [ext_resource type="Script" path="res://AnimateStrings.gd" id="5_8k0le"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stjbi"]
@@ -281,6 +281,7 @@ transform = Transform3D(0.991114, 0.133017, 0, -0.133017, 0.991114, 0, 0, 0, 1, 
 script = ExtResource("2_j3joj")
 
 [node name="Strings" parent="Ukulele" index="0"]
+lod_bias = 128.0
 surface_material_override/0 = SubResource("StandardMaterial3D_3njvk")
 surface_material_override/1 = SubResource("StandardMaterial3D_o4cgd")
 surface_material_override/2 = SubResource("StandardMaterial3D_l1pqs")
